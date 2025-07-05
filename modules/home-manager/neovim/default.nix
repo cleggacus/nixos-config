@@ -23,7 +23,7 @@
             }
           },
         dev = {
-          path = "${pkgs.vimUtils.packDir config.home-manager.users.USERNAME.programs.neovim.finalPackage.passthru.packpathDirs}/pack/myNeovimPackages/start",
+          path = "${pkgs.vimUtils.packDir}/pack/myNeovimPackages/start",
           patterns = {""}, -- Specify that all of our plugins will use the dev dir. Empty string is a wildcard!
         },
         install = {
@@ -36,10 +36,10 @@
         },
       })
     '';
+  };
 
-    xdg.configFile."nvim/lua" = {
-      recursive = true;
-      source = ./lua;
-    };
+  xdg.configFile."nvim/lua" = {
+    recursive = true;
+    source = ./lua;
   };
 }
