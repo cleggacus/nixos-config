@@ -87,6 +87,12 @@ in {
 	titlebar = false;
         commands = [
           {
+            command = "move up 120px";
+            criteria = {
+              app_id = "wofi";
+            };
+          }
+          {
             command = "floating enable, resize set width 400 px height 225px, sticky on, dim_inactive 0.0";
             criteria = {
               title = "Picture-in-Picture";

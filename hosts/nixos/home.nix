@@ -7,6 +7,7 @@
     ../../modules/home-manager/fonts.nix
     ../../modules/home-manager/zsh.nix
     ../../modules/home-manager/gh.nix
+    ../../modules/home-manager/neovim/default.nix
   ];
 
   home.username = "cleggacus";
@@ -23,9 +24,12 @@
 
   home.packages = with pkgs; [
     google-chrome
-    neovim
     discord
     networkmanagerapplet
+
+    gcc
+    wl-clipboard
+    xclip
 
   ];
 
@@ -33,7 +37,6 @@
   };
 
   home.sessionVariables = {
-    EDITOR = "nvim";
   };
 
   # Let Home Manager install and manage itself.

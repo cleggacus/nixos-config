@@ -9,6 +9,9 @@
       lines = 8;
       eh = 2;
       width = 500;
+      yoffset = -20;  # Moves the window 20 pixels up
+      xoffset = 0;    # Centers the window horizontally
+
     };
   
     style = ''
