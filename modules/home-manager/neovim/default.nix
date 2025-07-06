@@ -10,5 +10,8 @@
     ];
   };
 
-  xdg.configFile."nvim".source = pkgs.lib.cleanSource ./config;
+  home.file.".config/nvim" = {
+    source = ./config;
+    recursive = true;
+  };
 }
