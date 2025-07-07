@@ -2,12 +2,17 @@
 
 let
   wallpaper = ../../wallpapers/wallpaper.jpg;
+  live_wallpaper = ../../wallpapers/wallpaper.gif;
 in {
   imports = [
     ./waybar.nix
     ./wofi.nix
     ./kitty.nix
     ./mako.nix
+  ];
+
+  home.packages = with pkgs; [
+    mpvpaper
   ];
 
   wayland.windowManager.sway = {
@@ -37,11 +42,11 @@ in {
       };
       colors = {
         focused = {
-          border = "#6272a4";
+          border = "#FF79C6";
           background = "#285577";
           text = "#f8f8f2";
-          indicator = "#6272a4";
-          childBorder = "#6272a4";
+          indicator = "#FF79C6";
+          childBorder = "#FF79C6";
         };
         focusedInactive = {
           border = "#282a3600";
@@ -83,7 +88,7 @@ in {
 	titlebar = false;
       };
       window = {
-        border = 0;
+        border = 2;
 	titlebar = false;
         commands = [
           {
@@ -108,6 +113,7 @@ in {
       };
       startup = [
         { command = "nm-applet"; always = true; }
+	{ command = ''pkill mpvpaper; mpvpaper eDP-1 -i ${live_wallpaper} -o "--no-audio --loop-file --panscan=1.0"''; always = true;  }
       ];
       output = {
         eDP-1 = {
