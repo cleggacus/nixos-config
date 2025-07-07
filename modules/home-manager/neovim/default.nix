@@ -6,7 +6,14 @@
 
     extraPackages = with pkgs; [
       ripgrep
-      stylua
+
+      # lua lsp
+      lua-language-server
+
+      # rust lsp
+      rust-analyzer
+      cargo
+      rustc
     ];
   };
 

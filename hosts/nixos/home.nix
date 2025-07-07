@@ -1,5 +1,6 @@
 { config, pkgs, ... }:
 
+
 {
   imports = [
     ../../modules/home-manager/sway.nix
@@ -7,6 +8,7 @@
     ../../modules/home-manager/fonts.nix
     ../../modules/home-manager/zsh.nix
     ../../modules/home-manager/gh.nix
+    ../../modules/home-manager/dev.nix
     ../../modules/home-manager/neovim/default.nix
   ];
 
@@ -30,7 +32,6 @@
     gcc
     wl-clipboard
     xclip
-
   ];
 
   home.file = {
@@ -38,6 +39,10 @@
 
   home.sessionVariables = {
   };
+
+  home.sessionPath = [
+    "$HOME/.local/share/nvim/mason/bin"
+  ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

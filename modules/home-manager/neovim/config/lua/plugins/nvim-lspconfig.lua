@@ -3,13 +3,13 @@ return {
   config = function()
     local lspconfig = require('lspconfig')
 
-    lspconfig.lua_ls.setup ({})
-    lspconfig.rust_analyzer.setup({})
-    lspconfig.clangd.setup ({})
-    lspconfig.eslint.setup ({})
-    lspconfig.rome.setup ({})
-    lspconfig.pyre.setup ({})
+    lspconfig.lua_ls.setup ({
+      cmd = { "lua-language-server" },
+    })
 
+    lspconfig.rust_analyzer.setup({
+      cmd = { "rust-analyzer" },
+    })
 
     vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
     vim.keymap.set('n', '<c-p>', vim.diagnostic.goto_prev)

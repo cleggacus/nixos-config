@@ -5,7 +5,16 @@
 { config, pkgs, inputs, ... }:
 
 
-{
+let
+  swayfx-flake = builtins.getFlake "github:WillPower3309/swayfx";
+  swayfx-pkg = swayfx-flake.packages.${pkgs.system}.default;
+in {
+  nixpkgs.overlays = [
+    (final: prev: {
+      swayfx = swayfx-pkg;
+    })
+  ];
+
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -71,11 +80,6 @@
   # Enable automatic login for the user.
   services.getty.autologinUser = "cleggacus";
 
-  environment.loginShellInit = ''
-    [[ "$(tty)" == /dev/tty1 ]] &&
-sway
-'';
-
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # List packages installed in system profile. To search, run:
@@ -88,28 +92,16 @@ sway
   ];
 
   services.gnome.gnome-keyring.enable = true;
+  security.polkit.enable = true;
 
-  nixpkgs.overlays = [
-    (final: prev: {
-      swayfx = prev.swayfx.overrideAttrs {
-        version = "0.5.3";
-        src = prev.fetchFromGitHub {
-          owner = "WillPower3309";
-          repo = "swayfx";
-          tag = "0.5.3";
-          sha256 = "1d4srsp1c4dfq7qqcccbqw0jwn9ghzqhkvgr1msgs7r1jkk4v4sd";
-        };
-      };
-    })
-  ];
-
+  environment.loginShellInit = ''
+    [[ "$(tty)" == /dev/tty1 ]] && sway
+  '';
 
   programs.sway = {
     enable = true;
     package = pkgs.swayfx;
   };
-
-  security.polkit.enable = true;
   
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
