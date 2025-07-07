@@ -3,6 +3,17 @@
 let
   wallpaper = ../../wallpapers/wallpaper.jpg;
   live_wallpaper = ../../wallpapers/wallpaper.gif;
+
+  mySwayfx = import ../../packages/swayfx-0-5-3.nix {
+    inherit (pkgs) lib fetchFromGitHub stdenv systemd meson replaceVars swaybg ninja pkg-config
+    gdk-pixbuf librsvg wayland-protocols libdrm libinput cairo pango wayland libGL libxkbcommon
+    pcre2 json_c libevdev scdoc scenefx wayland-scanner xcbutilwm wlroots_0_18 testers nixosTests;
+    # Pass any other needed args here, maybe isNixOS = true, enableXWayland = true, etc.
+    isNixOS = true;
+    enableXWayland = true;
+    systemdSupport = true;
+    trayEnabled = true;
+  };
 in {
   imports = [
     ./waybar.nix
@@ -17,7 +28,7 @@ in {
 
   wayland.windowManager.sway = {
     enable = true;
-    package = pkgs.swayfx;
+    package = mySwayfx;
     checkConfig = false;
       # blur_xray enable;
       # blur_ignore_transparent enable;

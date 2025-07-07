@@ -10,20 +10,13 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
-    let
-      system = "x86_64-linux";
-      overlays = [ (import ./overlays/swayfx-0-5-3.nix) ];
-      pkgs = import nixpkgs {
-        inherit system overlays;
-      };
-    in {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/nixos/configuration.nix
-          inputs.home-manager.nixosModules.default
-        ];
-      };
+  outputs = { self, nixpkgs, ... }@inputs: {
+    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs;};
+      modules = [
+        ./hosts/nixos/configuration.nix
+        inputs.home-manager.nixosModules.default
+      ];
     };
+  };
 }
