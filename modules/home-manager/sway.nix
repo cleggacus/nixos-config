@@ -27,7 +27,7 @@ in {
       blur enable
       blur_radius 3
       corner_radius 10
-      default_dim_inactive 0.15
+      shadows enable
     '';
     config = rec {
       modifier = "Mod4";
