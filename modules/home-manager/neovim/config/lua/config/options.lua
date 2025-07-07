@@ -1,5 +1,16 @@
+-- general vim setup
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.mouse = "a"
-vim.opt.clipboard = "unnamedplus"  -- Use system clipboard
-vim.opt.timeoutlen = 300           -- Faster keybind recognition
+vim.opt.clipboard = "unnamedplus"
+
+-- undo tree
+vim.opt.undofile = true
+
+local undo_dir = vim.fn.stdpath('config') .. '/undo'
+
+if vim.fn.isdirectory(undo_dir) == 0 then
+  vim.fn.mkdir(undo_dir, "p")
+end
+
+vim.opt.undodir = undo_dir
+
