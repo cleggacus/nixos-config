@@ -15,6 +15,21 @@ in {
     mpvpaper
   ];
 
+  nixpkgs.overlays = [
+    (final: prev: {
+      swayfx = prev.swayfx.overrideAttrs {
+         version = "0.5.3";
+         src = prev.fetchFromGitHub {
+           owner = "WillPower3309";
+           repo = "swayfx";
+           tag = "0.5.3";
+           sha256 = "1d4srsp1c4dfq7qqcccbqw0jwn9ghzqhkvgr1msgs7r1jkk4v4sd";
+         };
+      };
+    })
+  ];
+
+
   wayland.windowManager.sway = {
     enable = true;
     package = pkgs.swayfx;

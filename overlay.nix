@@ -1,4 +1,3 @@
-# ./overlays/default.nix
 { config, pkgs, lib, ... }:
 
 {
