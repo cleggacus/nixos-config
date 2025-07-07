@@ -16,6 +16,8 @@
       modules = [
         ./hosts/nixos/configuration.nix
         inputs.home-manager.nixosModules.default
+	(import ./overlay.nix)
+
       ];
     };
   };

@@ -4,6 +4,7 @@
 
 { config, pkgs, inputs, ... }:
 
+
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -72,11 +73,8 @@
 
   environment.loginShellInit = ''
     [[ "$(tty)" == /dev/tty1 ]] &&
-sway
+eway
 '';
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
