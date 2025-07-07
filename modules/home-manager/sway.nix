@@ -3,6 +3,11 @@
 let
   wallpaper = ../../wallpapers/wallpaper.jpg;
   live_wallpaper = ../../wallpapers/wallpaper.gif;
+
+  swayfx-flake = builtins.getFlake "github:WillPower3309/swayfx";
+  swayfx-pkg = swayfx-flake.packages.${pkgs.system}.default;
+
+  python_script = builtins.toPath ./sway.py;
 in {
   imports = [
     ./waybar.nix
@@ -11,38 +16,33 @@ in {
     ./mako.nix
   ];
 
-  home.packages = with pkgs; [
-    mpvpaper
-  ];
 
   nixpkgs.overlays = [
     (final: prev: {
-      swayfx = prev.swayfx.overrideAttrs {
-         version = "0.5.3";
-         src = prev.fetchFromGitHub {
-           owner = "WillPower3309";
-           repo = "swayfx";
-           tag = "0.5.3";
-           sha256 = "1d4srsp1c4dfq7qqcccbqw0jwn9ghzqhkvgr1msgs7r1jkk4v4sd";
-         };
-      };
+      swayfx = swayfx-pkg;
     })
   ];
 
+  home.packages = with pkgs; [
+    mpvpaper
+    (python3.withPackages (ps: with ps; [ i3ipc ]))
+  ];
 
   wayland.windowManager.sway = {
     enable = true;
     package = pkgs.swayfx;
     checkConfig = false;
-      # blur_xray enable;
-      # blur_ignore_transparent enable;
-      # shadows enable;
-      # corner_radius 20;
+    systemd.enable = true;
     extraConfig = ''
       blur enable
       blur_radius 3
       corner_radius 10
       shadows enable
+      shadows_on_csd enable
+      shadow_blur_radius 15
+      shadow_color #0000008F
+      shadow_offset 5 5
+      focus_follows_mouse no
     '';
     config = rec {
       modifier = "Mod4";
@@ -103,7 +103,7 @@ in {
 	titlebar = false;
       };
       window = {
-        border = 2;
+        border = 0;
 	titlebar = false;
         commands = [
           {
@@ -127,6 +127,7 @@ in {
         ];
       };
       startup = [
+        { command = ''pkill -f sway.py; python3 ${python_script}''; always = true; }
         { command = "nm-applet"; always = true; }
 	{ command = ''pkill mpvpaper; mpvpaper eDP-1 -i ${live_wallpaper} -o "--no-audio --loop-file --panscan=1.0"''; always = true;  }
       ];
