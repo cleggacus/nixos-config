@@ -1,16 +1,24 @@
 #!/usr/bin/python
 
-# This script requires i3ipc-python package (install it from a system package manager
-# or pip).
-# It makes inactive windows transparent. Use `transparency_val` variable to control
-# transparency strength in range of 0…1.
-
 import i3ipc
 
 focused_command = 'border pixel 2'
 unfocused_command = 'border none'
 ipc              = i3ipc.Connection()
 prev_focused     = None
+
+def update_borders(container, is_focused):
+    if not is_focused:
+        container.command(unfocused_command)
+        return
+
+    ws = ipc.get_tree().find_focused().workspace()
+    leaves = ws.leaves() if ws else []
+
+    if len(leaves) == 1:
+        container.command(unfocused_command)
+    else:
+        container.command(focused_command)
 
 for window in ipc.get_tree():
     if window.focused:
@@ -20,9 +28,11 @@ for window in ipc.get_tree():
 
 def on_window_focus(ipc, focused):
     global prev_focused
-    if focused.container.id != prev_focused.id: # https://github.com/swaywm/sway/issues/2859
-        focused.container.command(focused_command)
-        prev_focused.command(unfocused_command)
+
+    if focused.container.id != prev_focused.id:
+        update_borders(focused.container, True)
+        update_borders(prev_focused, False)
+
         prev_focused = focused.container
 
 ipc.on("window::focus", on_window_focus)

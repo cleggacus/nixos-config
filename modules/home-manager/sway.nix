@@ -127,9 +127,9 @@ in {
         ];
       };
       startup = [
-        { command = ''pkill -f sway.py; python3 ${python_script}''; always = true; }
+        { command = ''python3 ${python_script} &''; always = true; }
         { command = "nm-applet"; always = true; }
-	{ command = ''pkill mpvpaper; mpvpaper eDP-1 -i ${live_wallpaper} -o "--no-audio --loop-file --panscan=1.0"''; always = true;  }
+	{ command = ''pkill mpvpaper; mpvpaper eDP-1 -i ${live_wallpaper} -o "--no-audio --loop-file --panscan=1.0" &''; always = true;  }
       ];
       output = {
         eDP-1 = {

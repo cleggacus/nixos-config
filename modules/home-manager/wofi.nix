@@ -17,7 +17,7 @@
     style = ''
       window {
         margin: 0;
-        border: 2px solid #44475A;
+        border: 0;
         background-color: #282a36;
 	border-radius: 10px;
       }
