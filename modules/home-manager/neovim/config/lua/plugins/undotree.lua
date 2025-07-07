@@ -14,4 +14,4 @@ return {
       { "<leader>u", group = "UndoTree" },
     })
   end,
-},
+}
