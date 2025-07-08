@@ -9,6 +9,7 @@
     ../../modules/home-manager/zsh.nix
     ../../modules/home-manager/gh.nix
     ../../modules/home-manager/dev.nix
+    ../../modules/home-manager/gtk.nix
     ../../modules/home-manager/neovim/default.nix
   ];
 
@@ -32,6 +33,8 @@
     gcc
     wl-clipboard
     xclip
+
+    pavucontrol
   ];
 
   home.file = {

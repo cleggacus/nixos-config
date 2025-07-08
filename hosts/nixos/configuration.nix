@@ -102,6 +102,20 @@ in {
     enable = true;
     package = pkgs.swayfx;
   };
+
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  services.blueman.enable = true;
+
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
+
   
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

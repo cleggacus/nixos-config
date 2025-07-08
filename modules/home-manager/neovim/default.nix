@@ -12,8 +12,6 @@
 
       # rust lsp
       rust-analyzer
-      cargo
-      rustc
     ];
   };
 
