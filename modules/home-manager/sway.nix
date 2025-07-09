@@ -13,6 +13,8 @@ in {
   ];
 
   home.packages = with pkgs; [
+    grim
+    slurp
     mpvpaper
     (python3.withPackages (ps: with ps; [ i3ipc ]))
   ];
