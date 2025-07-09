@@ -149,6 +149,48 @@ in {
  	  scale = "1";
         };
       };
+      workspaceOutputAssign = [
+        {
+	  workspace = "1";
+	  output = ["DP-1" "DP-2" "HDMI-A-1" "eDP-1"];
+	}
+        {
+	  workspace = "2";
+	  output = ["DP-1" "DP-2" "HDMI-A-1" "eDP-1"];
+	}
+        {
+	  workspace = "3";
+	  output = ["DP-1" "DP-2" "HDMI-A-1" "eDP-1"];
+	}
+        {
+	  workspace = "4";
+	  output = ["DP-1" "DP-2" "HDMI-A-1" "eDP-1"];
+	}
+        {
+	  workspace = "5";
+	  output = ["DP-1" "DP-2" "HDMI-A-1" "eDP-1"];
+	}
+        {
+	  workspace = "6";
+	  output = ["DP-1" "DP-2" "HDMI-A-1" "eDP-1"];
+	}
+        {
+	  workspace = "7";
+	  output = ["eDP-1" "DP-1" "DP-2" "HDMI-A-1"];
+	}
+        {
+	  workspace = "8";
+	  output = ["eDP-1" "DP-1" "DP-2" "HDMI-A-1"];
+	}
+        {
+	  workspace = "9";
+	  output = ["eDP-1" "DP-1" "DP-2" "HDMI-A-1"];
+	}
+        {
+	  workspace = "10";
+	  output = ["eDP-1" "DP-1" "DP-2" "HDMI-A-1"];
+	}
+      ];
       keybindings = {
         "${modifier}+Return" = "exec ${terminal}";
         "${modifier}+d" = "exec ${menu}";

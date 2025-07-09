@@ -8,7 +8,10 @@ ipc              = i3ipc.Connection()
 prev_focused     = None
 
 def update_borders(container, is_focused):
-    if not is_focused:
+    floating = container.floating
+    is_floating = floating == "auto_on" or floating == "user_on"
+
+    if not is_focused or is_floating:
         container.command(unfocused_command)
         return
 
