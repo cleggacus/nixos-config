@@ -11,13 +11,12 @@
       width = 500;
       yoffset = -20;  # Moves the window 20 pixels up
       xoffset = 0;    # Centers the window horizontally
-
     };
   
     style = ''
       window {
         margin: 0;
-        border: 0;
+	border: 2px solid #BD93F9;
         background-color: #282a36;
 	border-radius: 10px;
       }
