@@ -212,6 +212,14 @@ in {
 	"XF86AudioStop" = "exec playerctl stop";
 	"XF86Search" = "exec bemenu-run";
 
+	"Print" = ''exec grim -g "$(slurp -d)" - | wl-copy'';
+	"Ctrl+Print" = "exec grim - | wl-copy";
+
+        "${modifier}+g" = "gaps inner all plus 10";
+        "${modifier}+Shift+g" = "gaps inner all minus 10";
+        "${modifier}+Control+g" = "gaps outer all plus 10";
+        "${modifier}+Control+Shift+g" = "gaps outer all minus 10";
+
         "${modifier}+1" = "workspace number 1";
         "${modifier}+2" = "workspace number 2";
         "${modifier}+3" = "workspace number 3";
