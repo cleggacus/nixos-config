@@ -3,10 +3,6 @@
 let
   wallpaper = ../../wallpapers/wallpaper.jpg;
   live_wallpaper = ../../wallpapers/wallpaper.gif;
-
-  swayfx-flake = builtins.getFlake "github:WillPower3309/swayfx";
-  swayfx-pkg = swayfx-flake.packages.${pkgs.system}.default;
-
   python_script = builtins.toPath ./sway.py;
 in {
   imports = [
@@ -14,13 +10,6 @@ in {
     ./wofi.nix
     ./kitty.nix
     ./mako.nix
-  ];
-
-
-  nixpkgs.overlays = [
-    (final: prev: {
-      swayfx = swayfx-pkg;
-    })
   ];
 
   home.packages = with pkgs; [

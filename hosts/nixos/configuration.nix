@@ -4,17 +4,7 @@
 
 { config, pkgs, inputs, ... }:
 
-
-let
-  swayfx-flake = builtins.getFlake "github:WillPower3309/swayfx";
-  swayfx-pkg = swayfx-flake.packages.${pkgs.system}.default;
-in {
-  nixpkgs.overlays = [
-    (final: prev: {
-      swayfx = swayfx-pkg;
-    })
-  ];
-
+{
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -68,6 +58,8 @@ in {
   };
 
   home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
     extraSpecialArgs = { inherit inputs; };
     users = {
       "cleggacus" = import ./home.nix;
@@ -81,6 +73,8 @@ in {
   services.getty.autologinUser = "cleggacus";
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
+
+  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
