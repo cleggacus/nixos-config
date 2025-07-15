@@ -64,6 +64,9 @@
       
       # Kill current pane using Alt + q
       bind -n M-Q kill-pane
+
+      set -g mouse on 
+      setw -g mouse on
     '';
   };
 }
