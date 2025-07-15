@@ -7,3 +7,8 @@ vim.keymap.set('n', 'L', '$', { noremap = true })                 -- L to move t
 vim.keymap.set('n', 'sv', ':vsplit<CR>', { noremap = true, silent = true }) -- sv to split vertically
 vim.keymap.set('n', 'sh', ':split<CR>', { noremap = true, silent = true })  -- sh to split horizontally
 
+local wk = require('which-key')
+
+wk.add({
+  { "<leader>pv", desc = "Previous View" },
+})

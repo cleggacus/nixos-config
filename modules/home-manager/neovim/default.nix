@@ -9,7 +9,6 @@
 
       # lua lsp
       lua-language-server
-
       # rust lsp
       rust-analyzer
     ];
