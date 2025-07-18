@@ -11,6 +11,7 @@
     ../../modules/home-manager/dev.nix
     ../../modules/home-manager/btop.nix
     ../../modules/home-manager/tmux.nix
+    ../../modules/home-manager/obs.nix
     ../../modules/home-manager/neovim/default.nix
   ];
 
